@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gcwebdesigner1-sudo.github.io/pocatello-landscape/sitemap.xml
