@@ -675,3 +675,10 @@ em, i { font-style: normal; }
   .est2-result { position: static; }
 }
 @media (max-width: 400px){ .est2-tiles { grid-template-columns: 1fr; } }
+
+/* ---- header call button ---- */
+.nav-cta .btn { padding: 12px 22px; font-size: .9rem; }
+.nav-call { border-color: rgba(26,28,24,.22); }
+.nav-call svg { color: var(--brass-700); }
+.nav-call:hover svg { color: var(--cream); }
+@media (max-width: 940px){ .nav-call { display: none; } }
