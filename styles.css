@@ -609,3 +609,69 @@ em, i { font-style: normal; }
 .review-cta h2 { font-size: clamp(2rem, 4.6vw, 3.3rem); color: #fff; margin: 14px 0 16px; }
 .review-cta p { color: rgba(246,242,232,.85); font-size: clamp(1rem, 1.6vw, 1.15rem); max-width: 46ch; margin: 0 auto; }
 .review-cta-actions { margin-top: 34px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* =================================================================
+   v4 — standout features: seasonal bar, instant estimator, mow-stripe motif
+   ================================================================= */
+
+/* ---- live seasonal bar ---- */
+.season { background: var(--pine-900); color: var(--cream); border-bottom: 1px solid rgba(255,255,255,.06); }
+.season-row { display: flex; align-items: center; gap: 22px; padding-block: 15px; flex-wrap: wrap; }
+.season-badge { display: inline-flex; align-items: center; gap: 10px; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; color: var(--brass-300); white-space: nowrap; }
+.season-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--fern); box-shadow: 0 0 0 4px rgba(74,124,82,.22); }
+.season-msg { color: rgba(246,242,232,.92); font-size: .98rem; flex: 1; min-width: 200px; }
+.season-cta { display: inline-flex; align-items: center; gap: 8px; color: #fff; font-weight: 600; font-size: .9rem; white-space: nowrap; }
+.season-cta svg { width: 16px; height: 16px; transition: transform .3s var(--ease); }
+.season-cta:hover svg { transform: translateX(4px); }
+@media (max-width: 680px){ .season-cta { display: none; } .season-msg { font-size: .9rem; } }
+
+/* ---- instant estimator ---- */
+.estimator { background: var(--pine-950); color: var(--cream); position: relative; overflow: hidden; }
+/* mow-stripe motif — subtle diagonal lawn stripes, the signature brand element */
+.estimator::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .6;
+  background: repeating-linear-gradient(115deg, rgba(255,255,255,.025) 0 38px, rgba(255,255,255,0) 38px 76px);
+}
+.estimator .wrap { position: relative; z-index: 1; }
+.est2-head { text-align: center; max-width: 640px; margin: 0 auto clamp(38px, 5vw, 60px); }
+.est2-head .eyebrow { justify-content: center; }
+.est2-head h2 { color: #fff; font-size: clamp(2rem, 4.4vw, 3.2rem); margin-top: 14px; }
+.est2-head p { color: rgba(246,242,232,.72); margin-top: 16px; }
+.u-line { position: relative; white-space: nowrap; }
+.u-line::after { content: ""; position: absolute; left: 0; right: 0; bottom: .04em; height: .12em; background: var(--brass); border-radius: 2px; }
+
+.est2-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(24px, 4vw, 46px); align-items: start; }
+.est2-controls { display: grid; gap: 32px; }
+.est2-label { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 1.05rem; color: #fff; margin-bottom: 18px; }
+.est2-num { width: 26px; height: 26px; border-radius: 50%; background: var(--brass); color: var(--pine-950); display: grid; place-items: center; font-size: .85rem; font-weight: 700; }
+.est2-hint { font-style: normal; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(246,242,232,.5); font-weight: 600; margin-left: auto; }
+.est2-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.est2-chip { padding: 12px 18px; border-radius: 100px; border: 1.5px solid rgba(246,242,232,.28); color: var(--cream); font-weight: 500; font-size: .92rem; transition: .25s var(--ease); }
+.est2-chip:hover { border-color: rgba(226,192,121,.65); transform: translateY(-1px); }
+.est2-chip.is-active { background: var(--brass); border-color: var(--brass); color: var(--pine-950); font-weight: 600; }
+.est2-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.est2-tile { padding: 18px 12px; border-radius: 12px; border: 1.5px solid rgba(246,242,232,.28); color: var(--cream); display: flex; flex-direction: column; gap: 4px; align-items: center; transition: .25s var(--ease); }
+.est2-tile strong { font-size: 1.05rem; }
+.est2-tile span { font-size: .76rem; color: rgba(246,242,232,.6); }
+.est2-tile:hover { border-color: rgba(226,192,121,.65); transform: translateY(-2px); }
+.est2-tile.is-active { border-color: var(--brass); background: rgba(226,192,121,.12); }
+.est2-tile.is-active span { color: var(--brass-300); }
+
+.est2-result { background: var(--pine-800); border: 1px solid rgba(246,242,232,.14); border-radius: var(--r-lg); padding: 30px; position: sticky; top: 100px; }
+.est2-result-label { font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--brass-300); font-weight: 600; }
+.est2-list { margin-top: 16px; display: grid; gap: 0; min-height: 56px; }
+.est2-empty { color: rgba(246,242,232,.5); font-size: .95rem; padding: 12px 0; }
+.est2-row { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(246,242,232,.1); animation: estin .4s var(--ease); }
+.est2-row .rn { color: #fff; font-size: .95rem; }
+.est2-row .rp { font-family: var(--ff-display); font-weight: 600; color: var(--brass-300); font-size: 1.2rem; white-space: nowrap; }
+.est2-row .rp small { font-family: var(--ff-sans); font-weight: 500; font-size: .72rem; color: rgba(246,242,232,.55); }
+@keyframes estin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.est2-note { margin-top: 18px; font-size: .82rem; color: rgba(246,242,232,.62); line-height: 1.5; }
+.est2-note strong { color: #fff; }
+.est2-actions { margin-top: 22px; display: grid; gap: 12px; }
+.est2-actions .btn { justify-content: center; }
+@media (max-width: 860px){
+  .est2-grid { grid-template-columns: 1fr; }
+  .est2-result { position: static; }
+}
+@media (max-width: 400px){ .est2-tiles { grid-template-columns: 1fr; } }

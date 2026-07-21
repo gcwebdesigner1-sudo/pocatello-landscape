@@ -135,3 +135,103 @@
   const y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
 })();
+
+/* ================= Live seasonal bar ================= */
+(function () {
+  var tag = document.getElementById("season-tag");
+  var msg = document.getElementById("season-msg");
+  var cta = document.getElementById("season-cta");
+  if (!msg) return;
+  var m = new Date().getMonth();
+  var seasons = [
+    { months: [2, 3, 4], tag: "Spring in Pocatello", msg: "Cleanup, fresh sod, and new-bed season — let's wake your yard back up.", cta: "Book spring work" },
+    { months: [5, 6, 7], tag: "Summer in Pocatello", msg: "Peak mowing & irrigation season — let's keep your yard green through the heat.", cta: "Book this season" },
+    { months: [8, 9, 10], tag: "Fall in Pocatello", msg: "Leaf cleanup and winter-prep season — let's get the yard buttoned up.", cta: "Book fall cleanup" },
+    { months: [11, 0, 1], tag: "Winter in Pocatello", msg: "Snow removal is running — and it's the perfect time to plan next year's yard.", cta: "Snow & planning" }
+  ];
+  for (var i = 0; i < seasons.length; i++) {
+    if (seasons[i].months.indexOf(m) > -1) {
+      tag.textContent = seasons[i].tag;
+      msg.textContent = seasons[i].msg;
+      if (cta && cta.childNodes[0]) cta.childNodes[0].nodeValue = seasons[i].cta + " ";
+      break;
+    }
+  }
+})();
+
+/* ================= Instant estimator ================= */
+(function () {
+  var chips = document.querySelectorAll("#svc-chips .est2-chip");
+  var tiles = document.querySelectorAll("#size-tiles .est2-tile");
+  var list = document.getElementById("est-list");
+  var ctaBtn = document.getElementById("est-cta");
+  if (!chips.length || !list) return;
+  var mult = 1;
+
+  function fmt(n) {
+    n = n >= 1000 ? Math.round(n / 100) * 100 : Math.round(n / 5) * 5;
+    return "$" + n.toLocaleString("en-US");
+  }
+
+  function render() {
+    var active = [];
+    chips.forEach(function (c) { if (c.classList.contains("is-active")) active.push(c); });
+    if (!active.length) {
+      list.innerHTML = '<div class="est2-empty">Pick a service to see your starting range.</div>';
+      if (ctaBtn) ctaBtn.href = "estimates.html";
+      return;
+    }
+    var html = "", params = [];
+    active.forEach(function (c) {
+      var base = parseFloat(c.getAttribute("data-base")) * mult;
+      var unit = c.getAttribute("data-unit") || "";
+      html += '<div class="est2-row"><span class="rn">' + c.getAttribute("data-name") + "</span>" +
+              '<span class="rp">from ' + fmt(base) + (unit ? ' <small>' + unit + "</small>" : "") + "</span></div>";
+      params.push(c.getAttribute("data-svc"));
+    });
+    list.innerHTML = html;
+    var size = document.querySelector("#size-tiles .est2-tile.is-active");
+    var sizeKey = size ? size.getAttribute("data-size") : "medium";
+    if (ctaBtn) ctaBtn.href = "estimates.html?services=" + params.join(",") + "&size=" + sizeKey;
+  }
+
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () { c.classList.toggle("is-active"); render(); });
+  });
+  tiles.forEach(function (t) {
+    t.addEventListener("click", function () {
+      tiles.forEach(function (x) { x.classList.remove("is-active"); });
+      t.classList.add("is-active");
+      mult = parseFloat(t.getAttribute("data-mult")) || 1;
+      render();
+    });
+  });
+  render();
+})();
+
+/* ========== Pre-fill the estimate form from the estimator hand-off ========== */
+(function () {
+  var form = document.getElementById("estimate-form");
+  if (!form) return;
+  var params = new URLSearchParams(location.search);
+  var svc = params.get("services"), size = params.get("size");
+  if (!svc && !size) return;
+  var map = { lawn: "s1", design: "s2", wall: "s3", beds: "s5", cleanup: "s6" };
+  var picked = [];
+  if (svc) {
+    svc.split(",").forEach(function (k) {
+      var el = document.getElementById(map[k]);
+      if (el) { el.checked = true; picked.push(el.value); }
+    });
+  }
+  var details = document.getElementById("details");
+  if (details) {
+    var sizes = { small: "Small (up to ¼ acre)", medium: "Medium (¼–½ acre)", large: "Large (½ acre +)" };
+    var lines = [];
+    if (size) lines.push("Yard size: " + (sizes[size] || size));
+    if (picked.length) lines.push("Interested in: " + picked.join(", "));
+    if (lines.length) details.value = lines.join("\n") + (details.value ? "\n\n" + details.value : "");
+  }
+  var card = document.getElementById("estimate-card");
+  if (card) setTimeout(function () { card.scrollIntoView({ behavior: "smooth", block: "center" }); }, 450);
+})();

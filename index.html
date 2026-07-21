@@ -159,6 +159,20 @@
   <div class="scroll-cue">Scroll<span class="line"></span></div>
 </section>
 
+<!-- ============ SEASONAL BAR (live, date-driven) ============ -->
+<div class="season" id="season">
+  <div class="wrap season-row">
+    <span class="season-badge">
+      <span class="season-dot"></span>
+      <span id="season-tag">Right now in Pocatello</span>
+    </span>
+    <span class="season-msg" id="season-msg">Peak mowing &amp; irrigation season — let's keep your yard green through the heat.</span>
+    <a href="estimates.html" class="season-cta" id="season-cta">Book this season
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</div>
+
 <!-- ============ ABOUT (small) ============ -->
 <section class="section about" id="about">
   <div class="wrap about-grid">
@@ -212,6 +226,57 @@
       </article>
     </div>
     <!-- NOTE for Jake: images are cropped from the client's own Google listing photo — swap for more real project photos when he sends them. -->
+  </div>
+</section>
+
+<!-- ============ INSTANT ESTIMATOR ============ -->
+<section class="section estimator" id="estimate">
+  <div class="wrap">
+    <div class="est2-head reveal">
+      <span class="eyebrow on-dark">Instant ballpark</span>
+      <h2>Build your quote in <span class="u-line">10 seconds.</span></h2>
+      <p>Pick what you need and your yard size — we'll show a starting range right away, then get you an exact price with a free on-site visit.</p>
+    </div>
+    <div class="est2-grid">
+      <div class="est2-controls reveal d1">
+        <div class="est2-step">
+          <div class="est2-label"><span class="est2-num">1</span> What do you need? <em class="est2-hint">pick any</em></div>
+          <div class="est2-chips" id="svc-chips">
+            <button type="button" class="est2-chip" data-svc="lawn" data-name="Lawn Care &amp; Mowing" data-base="45" data-unit="/ visit">Lawn Care &amp; Mowing</button>
+            <button type="button" class="est2-chip" data-svc="design" data-name="Landscape Design &amp; Install" data-base="2500" data-unit="">Landscape Design</button>
+            <button type="button" class="est2-chip" data-svc="wall" data-name="Retaining Walls &amp; Hardscapes" data-base="3500" data-unit="">Retaining Walls</button>
+            <button type="button" class="est2-chip" data-svc="beds" data-name="Planting &amp; Flower Beds" data-base="600" data-unit="">Planting &amp; Beds</button>
+            <button type="button" class="est2-chip" data-svc="cleanup" data-name="Seasonal Cleanup" data-base="175" data-unit="">Seasonal Cleanup</button>
+          </div>
+        </div>
+        <div class="est2-step">
+          <div class="est2-label"><span class="est2-num">2</span> How big is the yard?</div>
+          <div class="est2-tiles" id="size-tiles">
+            <button type="button" class="est2-tile" data-size="small" data-mult="0.7"><strong>Small</strong><span>Up to ¼ acre</span></button>
+            <button type="button" class="est2-tile is-active" data-size="medium" data-mult="1"><strong>Medium</strong><span>¼–½ acre</span></button>
+            <button type="button" class="est2-tile" data-size="large" data-mult="1.5"><strong>Large</strong><span>½ acre +</span></button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="est2-result reveal d2" aria-live="polite">
+        <div class="est2-result-top">
+          <span class="est2-result-label">Your ballpark</span>
+          <div class="est2-list" id="est-list">
+            <div class="est2-empty">Pick a service to see your starting range.</div>
+          </div>
+        </div>
+        <div class="est2-note">Starting ranges only — your on-site estimate is always <strong>free and exact</strong>.</div>
+        <div class="est2-actions">
+          <a class="btn btn-primary" id="est-cta" href="estimates.html">Get my exact quote
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="tel:+12082205069">Or call (208) 220-5069</a>
+        </div>
+      </aside>
+    </div>
+    <!-- NOTE for Jake: starting prices live in data-base on each chip in this section.
+         They're conservative placeholders — set them to the owner's real numbers before launch. -->
   </div>
 </section>
 
