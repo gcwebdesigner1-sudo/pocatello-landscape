@@ -32,7 +32,8 @@
   // them stuck invisible. This measures position on scroll instead.
   const reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
   const revealVisible = () => {
-    const trigger = window.innerHeight * 0.9;
+    const vh = window.innerHeight || document.documentElement.clientHeight || 800;
+    const trigger = vh * 0.9;
     for (let i = reveals.length - 1; i >= 0; i--) {
       const el = reveals[i];
       if (el.getBoundingClientRect().top < trigger) {
@@ -55,8 +56,18 @@
     },
     { passive: true }
   );
-  window.addEventListener("load", revealVisible);
+  // Run across every point where layout may have settled. The final failsafe
+  // guarantees nothing is ever left permanently invisible on slow devices or
+  // if a paint is missed — every remaining .reveal is shown within 2.5s.
   revealVisible();
+  window.requestAnimationFrame(() => window.requestAnimationFrame(revealVisible));
+  document.addEventListener("DOMContentLoaded", revealVisible);
+  window.addEventListener("load", revealVisible);
+  window.addEventListener("resize", revealVisible, { passive: true });
+  setTimeout(revealVisible, 400);
+  setTimeout(function () {
+    while (reveals.length) reveals.pop().classList.add("in");
+  }, 2500);
 
   // Lightweight parallax on hero + band images
   const parallaxEls = document.querySelectorAll("[data-parallax] img");
