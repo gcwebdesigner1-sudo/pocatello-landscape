@@ -439,7 +439,7 @@ body.menu-open .menu-overlay { opacity: 1; visibility: visible; }
 .est-lede { margin-top:14px; margin-bottom: clamp(30px, 4vw, 48px); max-width: 58ch; color: var(--muted); font-size: 1.08rem; }
 .est-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(30px, 5vw, 64px); align-items: start; }
 .est-card { background: var(--white); border: 1px solid rgba(26,28,24,.08); border-radius: var(--r-xl); padding: clamp(28px, 4vw, 48px); box-shadow: var(--shadow-md); }
-.est-card h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); color: var(--pine-900); }
+.est-card h1, .est-card h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); color: var(--pine-900); line-height: 1.1; }
 .est-card > p.sub { color: var(--muted); margin-top: 10px; margin-bottom: 30px; }
 
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
