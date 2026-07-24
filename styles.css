@@ -431,7 +431,12 @@ body.menu-open .menu-overlay { opacity: 1; visibility: visible; }
 .page-hero h1 em { font-style: italic; color: var(--brass-300); }
 .page-hero p { margin-top: 22px; max-width: 52ch; color: rgba(246,242,232,.85); font-size: 1.12rem; }
 
-.est-main { background: var(--cream); }
+.est-main { background: var(--cream); padding-top: clamp(56px, 6vw, 80px); }
+.est-crumbs { font-size:.82rem; color: var(--muted); margin-bottom: 14px; }
+.est-crumbs a { color: var(--forest); font-weight:600; }
+.est-crumbs a:hover { color: var(--pine-900); }
+.est-title { font-size: clamp(2.2rem, 5vw, 3.4rem); color: var(--pine-900); line-height:1.04; margin-top:8px; }
+.est-lede { margin-top:14px; margin-bottom: clamp(30px, 4vw, 48px); max-width: 58ch; color: var(--muted); font-size: 1.08rem; }
 .est-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(30px, 5vw, 64px); align-items: start; }
 .est-card { background: var(--white); border: 1px solid rgba(26,28,24,.08); border-radius: var(--r-xl); padding: clamp(28px, 4vw, 48px); box-shadow: var(--shadow-md); }
 .est-card h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); color: var(--pine-900); }
